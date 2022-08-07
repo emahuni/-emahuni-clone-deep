@@ -54,6 +54,17 @@ function cloneObjectDeep (val, instanceClone, root, parentsRes, parentsVal) {
     // if root is undefined then this was just a clone object constructor
     if (root) {
       for (let key in val) {
+        /** work on setters/getters */
+        if (Object.getOwnPropertyDescriptor(val, key).get) {
+          Object.defineProperty(res, key, { get: Object.getOwnPropertyDescriptor(val, key).get });
+          continue;
+        } else if (Object.getOwnPropertyDescriptor(val, key).set) {
+          Object.defineProperty(res, key, { set: Object.getOwnPropertyDescriptor(val, key).set });
+          continue;
+        }
+
+        /** todo work on proxies */
+
         const isValObj = isArrayOrObject(val[key]);
 
         let circularIndex;
