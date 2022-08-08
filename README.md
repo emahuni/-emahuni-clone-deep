@@ -1,6 +1,6 @@
 # @emahuni/clone-deep [![NPM version](https://img.shields.io/npm/v/@emahuni/clone-deep.svg?style=flat)](https://www.npmjs.com/package/@emahuni/clone-deep) [![NPM monthly downloads](https://img.shields.io/npm/dm/@emahuni/clone-deep.svg?style=flat)](https://npmjs.org/package/@emahuni/clone-deep) [![NPM total downloads](https://img.shields.io/npm/dt/@emahuni/clone-deep.svg?style=flat)](https://npmjs.org/package/@emahuni/clone-deep) [![Linux Build Status](https://img.shields.io/travis/emahuni/@emahuni/clone-deep.svg?style=flat&label=Travis)](https://travis-ci.org/emahuni/@emahuni/clone-deep)
 
-> Like the original clone-deep, it will recursively (deep) clone JavaScript native types, like Object, Array, RegExp, Date as well as primitives, setters, getters and circular objects cloning.
+> Like the original clone-deep, it will recursively (deep) clone JavaScript native types, like Object, Array, RegExp, Date as well as primitives, setters, getters and circular objects cloning. Clones object property descriptors info as well.
 
 Please consider following this project's author, [Emmanuel Mahuni](https://github.com/emahuni), and consider starring the project to show your :heart: and support.
 
@@ -71,7 +71,7 @@ $ npm install && npm test
 
 | **Commits** | **Contributor** |  
 | -- | --- |  
-| 5  | [emahuni](https://github.com/emahuni) |  
+| 24  | [emahuni](https://github.com/emahuni) |  
 | 46 | [jonschlinkert](https://github.com/jonschlinkert) |  
 | 2 | [yujunlong2000](https://github.com/yujunlong2000) |  
 
