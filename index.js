@@ -60,7 +60,6 @@ function cloneObjectDeep (val, instanceClone, root, parentsRes, parentsVal) {
           Object.defineProperty(res, key, {
             get:          Object.getOwnPropertyDescriptor(val, key).get,
             set:          Object.getOwnPropertyDescriptor(val, key).set,
-            // writable:     Object.getOwnPropertyDescriptor(val, key).writable,
             enumerable:   Object.getOwnPropertyDescriptor(val, key).enumerable,
             configurable: Object.getOwnPropertyDescriptor(val, key).configurable,
           });
@@ -82,14 +81,24 @@ function cloneObjectDeep (val, instanceClone, root, parentsRes, parentsVal) {
             parentsVal.push(val[key]);
 
             const keyRoot = _cloneDeep(val[key], instanceClone); // get instance for object at val[key]
-            res[key] = keyRoot;
+            Object.defineProperty(res, key, {
+              value:        keyRoot,
+              writable:     Object.getOwnPropertyDescriptor(val, key).writable,
+              enumerable:   Object.getOwnPropertyDescriptor(val, key).enumerable,
+              configurable: Object.getOwnPropertyDescriptor(val, key).configurable,
+            });
             parentsRes.push(keyRoot);
 
             // the following will clone val[key] object on keyRoot/res[key]
             _cloneDeep(val[key], instanceClone, keyRoot, parentsRes, parentsVal);
           } else {
             // this is a scalar property
-            res[key] = _cloneDeep(val[key], instanceClone, res, parentsRes, parentsVal);
+            Object.defineProperty(res, key, {
+              value:        _cloneDeep(val[key], instanceClone, res, parentsRes, parentsVal),
+              writable:     Object.getOwnPropertyDescriptor(val, key).writable,
+              enumerable:   Object.getOwnPropertyDescriptor(val, key).enumerable,
+              configurable: Object.getOwnPropertyDescriptor(val, key).configurable,
+            });
           }
         }
       }
