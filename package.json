@@ -1,7 +1,7 @@
 {
   "name": "@emahuni/clone-deep",
   "description": "Like the original clone-deep, it will recursively (deep) clone JavaScript native types, like Object, Array, RegExp, Date as well as primitives, setters, getters and circular objects cloning. Clones object property descriptors info as well.",
-  "version": "5.1.2",
+  "version": "5.1.3",
   "homepage": "https://github.com/emahuni/clone-deep",
   "author": "Emmanuel Mahuni (https://github.com/emahuni)",
   "repository": "emahuni/clone-deep",
