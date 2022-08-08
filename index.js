@@ -55,10 +55,14 @@ function cloneObjectDeep (val, instanceClone, root, parentsRes, parentsVal) {
     if (root) {
       for (let key in val) {
         /** work on setters/getters */
-        if (Object.keys(Object.getOwnPropertyDescriptor(val, key)).some(k => ['get', 'set'].includes(k))) {
+        const valKeyDescrKeys = Object.keys(Object.getOwnPropertyDescriptor(val, key));
+        if (valKeyDescrKeys.some(k => ['get', 'set'].includes(k))) {
           Object.defineProperty(res, key, {
-            get: Object.getOwnPropertyDescriptor(val, key).get,
-            set: Object.getOwnPropertyDescriptor(val, key).set,
+            get:          Object.getOwnPropertyDescriptor(val, key).get,
+            set:          Object.getOwnPropertyDescriptor(val, key).set,
+            // writable:     Object.getOwnPropertyDescriptor(val, key).writable,
+            enumerable:   Object.getOwnPropertyDescriptor(val, key).enumerable,
+            configurable: Object.getOwnPropertyDescriptor(val, key).configurable,
           });
           continue;
         }

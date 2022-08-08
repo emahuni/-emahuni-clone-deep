@@ -74,7 +74,7 @@ describe('cloneDeep()', function () {
     assert.notEqual(arr1[1][0].a, arr2[1][0].a);
   });
 
-  it('should deeply clone getters and setters', function () {
+  it('should deeply clone getter and setter', function () {
     const one = { a: [], get sz () { return this.a.length; }, set ap (v) { this.a.push(v);} };
 
     const two = clone(one);
@@ -84,6 +84,21 @@ describe('cloneDeep()', function () {
     one.ap = 1;
     two.ap = 3;
     two.ap = 4;
+
+    assert.equal(one.sz, 1);
+    assert.equal(two.sz, 2);
+  });
+
+  it('should deeply clone when getter only is defined', function () {
+    const one = { a: [], get sz () { return this.a.length; } };
+
+    const two = clone(one);
+
+    // assert.notDeepEqual(one, two);
+
+    one.a.push(1);
+    two.a.push(3);
+    two.a.push(4);
 
     assert.equal(one.sz, 1);
     assert.equal(two.sz, 2);
